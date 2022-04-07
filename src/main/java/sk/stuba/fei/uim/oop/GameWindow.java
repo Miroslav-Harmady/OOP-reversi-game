@@ -9,16 +9,14 @@ public class GameWindow extends JFrame {
 
     public GameWindow(){
         super();
-        this.setSize(500,500);
+        this.setSize(600,600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.getContentPane().setBackground(Color.white);
         this.setLayout(new BorderLayout());
 
-        this.menu = new GameMenu();
-        this.add(this.menu, BorderLayout.PAGE_START);
-
-        this.board = new GameBoard();
-        this.add(this.board, BorderLayout.CENTER);
+//        this.board = new GameBoard();
+//        this.add(this.board, BorderLayout.CENTER);
     }
+
 }

@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameBoard extends JPanel {
+    private int size;
 
-    public GameBoard(){
+    public GameBoard(int size){
         super();
-        int size = 6;
-        this.setLayout(new GridLayout(size,size,6,6));
-        for (int index = 0; index < (size * size); index++) {
+        this.setSize(size);
+        this.setLayout(new GridLayout(this.size,this.size,6,6));
+        for (int index = 0; index < (this.size * this.size); index++) {
             Tile tile = new Tile();
             tile.setBackground(Color.green);
             tile.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -21,5 +22,14 @@ public class GameBoard extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+    }
+
+
+    public int getBoardSize() {
+        return this.size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }
