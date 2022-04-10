@@ -15,7 +15,7 @@ public class GameMenu extends JPanel implements ChangeListener {
     public GameMenu(JFrame window){
         super();
 
-        this.setPreferredSize(new Dimension(300, 50));
+        this.setPreferredSize(new Dimension(500, 75));
 
         this.setLayout(new GridLayout(1,3));
         this.resizeSlider = new JSlider(6, 12, 6);

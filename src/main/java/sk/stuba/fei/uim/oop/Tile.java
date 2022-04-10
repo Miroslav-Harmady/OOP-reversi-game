@@ -7,17 +7,24 @@ import java.awt.event.MouseListener;
 
 public class Tile extends JPanel implements MouseListener {
     private int size;
-    private TileData[][] board;
+    private TileDataa[][] board;
     private Color fill;
 
-    public Tile(int numOfTiles, TileData[][] boardData, Color color){
+
+    public Tile(int numOfTiles, TileDataa[][] boardData, Color color, boolean highlighted){
         super();
         this.board = boardData;
         this.fill = color;
-        this.setSize(300/numOfTiles);
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setSize(480/numOfTiles);
+        if (highlighted){
+            this.setBorder(BorderFactory.createLineBorder(Color.red,3));
+            this.addMouseListener(this);
+        } else{
+            this.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+
         this.setBackground(Color.green);
-        this.addMouseListener(this);
+
 
     }
 
@@ -49,15 +56,11 @@ public class Tile extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        int col = this.getComponentAt(e.getX(),e.getY()).getX();
-        int row = this.getComponentAt(e.getX(),e.getY()).getY();
-        //System.out.print(this.board[row/this.size][col/this.size]);
-
-        System.out.println((row/this.size + " " + col/this.size));
+        this.setBorder(BorderFactory.createLineBorder(Color.blue,3));
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        this.setBorder(BorderFactory.createLineBorder(Color.red,3));
     }
 }
