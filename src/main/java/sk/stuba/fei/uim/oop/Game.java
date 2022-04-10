@@ -15,7 +15,7 @@ public class Game {
         this.window = new JFrame();
         this.window.setSize(600,600);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.window.setVisible(true);
+
         this.window.getContentPane().setBackground(Color.white);
         this.window.setLayout(new BorderLayout());
 
@@ -24,6 +24,9 @@ public class Game {
 
         GameBoard board = new GameBoard(6);
         this.window.add(board, BorderLayout.CENTER);
+        this.window.pack();
+
+        this.window.setVisible(true);
     }
 
 }

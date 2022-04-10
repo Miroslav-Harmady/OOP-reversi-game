@@ -14,9 +14,8 @@ public class GameWindow extends JFrame {
         this.setVisible(true);
         this.getContentPane().setBackground(Color.white);
         this.setLayout(new BorderLayout());
-
-//        this.board = new GameBoard();
-//        this.add(this.board, BorderLayout.CENTER);
+        this.pack();
+        
     }
 
 }

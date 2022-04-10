@@ -22,9 +22,13 @@ public class ResetButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.window.remove(this.window.getContentPane().getComponent(1));
+        GameBoard board = (GameBoard) this.window.getContentPane().getComponent(1);
+        //this.window.remove(this.window.getContentPane().getComponent(1));
+        this.window.remove(board);
+        board = null;
         ((GameMenu) this.window.getContentPane().getComponent(0)).getSizeInfo().setText(this.size + "x" + this.size);
-        GameBoard board = new GameBoard(this.size);
+        board = new GameBoard(this.size);
         this.window.add(board, BorderLayout.CENTER);
+        this.window.revalidate();
     }
 }
