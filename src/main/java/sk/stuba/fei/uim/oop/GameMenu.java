@@ -12,7 +12,7 @@ public class GameMenu extends JPanel implements ChangeListener {
     private JSlider resizeSlider;
     private JLabel sizeInfo;
 
-    public GameMenu(JFrame window){
+    public GameMenu(GameWindow frame){
         super();
 
         this.setPreferredSize(new Dimension(500, 75));
@@ -20,7 +20,7 @@ public class GameMenu extends JPanel implements ChangeListener {
         this.setLayout(new GridLayout(1,3));
         this.resizeSlider = new JSlider(6, 12, 6);
         this.sizeInfo = new JLabel("6x6");
-        this.resetButton = new ResetButton(window);
+        this.resetButton = new ResetButton(frame);
 
         this.setBackground(Color.lightGray);
         this.add(this.resizeSlider);

@@ -18,7 +18,7 @@ public class Tile extends JPanel implements MouseListener {
         this.setSize(480/numOfTiles);
         if (highlighted){
             this.setBorder(BorderFactory.createLineBorder(Color.red,3));
-            this.addMouseListener(this);
+            //this.addMouseListener(this);
         } else{
             this.setBorder(BorderFactory.createLineBorder(Color.black));
         }

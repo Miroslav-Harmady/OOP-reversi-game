@@ -1,15 +1,21 @@
 package sk.stuba.fei.uim.oop;
 
+import lombok.Data;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Data
 public class Game {
-    JFrame window;
+    private JFrame window;
+    private GameRules board;
 
 
     public Game(){
         this.prepare();
     }
+    //TODO namiesto game bude gamewindow game je posahany.
+
 
     private void prepare(){
         this.window = new JFrame();
@@ -19,12 +25,15 @@ public class Game {
         this.window.getContentPane().setBackground(Color.white);
         this.window.setLayout(new BorderLayout());
 
-        GameMenu menu = new GameMenu(this.window);
-        this.window.add(menu, BorderLayout.PAGE_START);
+        this.board = new GameRules(6);
 
-        GameBoard board = new GameBoard(6);
-        this.window.add(board, BorderLayout.CENTER);
+        //GameMenu menu = new GameMenu(this);
+        //this.window.add(menu, BorderLayout.PAGE_START);
+
+        //this.window.add(board.getFrontend());
+        //this.window.add(board, BorderLayout.CENTER);
         this.window.pack();
+        this.window.setResizable(false);
 
         this.window.setVisible(true);
     }

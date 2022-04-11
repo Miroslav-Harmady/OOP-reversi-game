@@ -1,15 +1,14 @@
 package sk.stuba.fei.uim.oop;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResetButton extends JButton implements ActionListener {
     private int size;
-    private JFrame window;
+    private GameWindow window;
 
-    public ResetButton(JFrame window){
+    public ResetButton(GameWindow window){
         super();
         this.size = 6;
         this.window = window;
@@ -22,13 +21,19 @@ public class ResetButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameBoard board = (GameBoard) this.window.getContentPane().getComponent(1);
-        //this.window.remove(this.window.getContentPane().getComponent(1));
-        this.window.remove(board);
-        board = null;
-        ((GameMenu) this.window.getContentPane().getComponent(0)).getSizeInfo().setText(this.size + "x" + this.size);
-        board = new GameBoard(this.size);
-        this.window.add(board, BorderLayout.CENTER);
+        MyFrontend board = this.window.getFrontend();
+        this.window.remove(this.window.getFrontend());
+        this.window.setRules(new GameRules(this.size));
+        this.window.setFrontend(new MyFrontend(this.window.getRules()));
+        this.window.add(this.window.getFrontend());
         this.window.revalidate();
+
+
+//        GameRules board = this.game.getBoard();
+//        this.game.getWindow().remove(board.getFrontend());
+//        this.game.setBoard(new GameRules(this.size));
+//        this.game.getWindow().add(this.game.getBoard().getFrontend());
+//        this.game.getWindow().revalidate();
+
     }
 }
