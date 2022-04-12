@@ -7,25 +7,22 @@ import java.awt.event.MouseListener;
 
 public class Tile extends JPanel implements MouseListener {
     private int size;
-    private TileDataa[][] board;
+    private GameRules rules;
     private Color fill;
 
 
-    public Tile(int numOfTiles, TileDataa[][] boardData, Color color, boolean highlighted){
+    public Tile(GameRules rules, Color color, boolean highlighted){
         super();
-        this.board = boardData;
+        this.rules = rules;
         this.fill = color;
-        this.setSize(480/numOfTiles);
+        this.setSize(480/rules.getBoardSize());
         if (highlighted){
             this.setBorder(BorderFactory.createLineBorder(Color.red,3));
-            //this.addMouseListener(this);
+            //this.addMouseListener(this); ked pouzijem tento listener nebude mi fungovat lilstener v ploche
         } else{
             this.setBorder(BorderFactory.createLineBorder(Color.black));
         }
-
         this.setBackground(Color.green);
-
-
     }
 
     public void setSize(int size) {

@@ -14,8 +14,6 @@ public class Game {
     public Game(){
         this.prepare();
     }
-    //TODO namiesto game bude gamewindow game je posahany.
-
 
     private void prepare(){
         this.window = new JFrame();
