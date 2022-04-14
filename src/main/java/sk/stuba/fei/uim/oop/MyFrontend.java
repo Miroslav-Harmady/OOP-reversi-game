@@ -10,7 +10,6 @@ public class MyFrontend extends JPanel implements MouseListener {
     private GameRules rules;
     private GameWindow frame;
 
-
     public MyFrontend(GameRules rules, GameWindow frame) {
         super();
         this.rules = rules;
@@ -28,12 +27,11 @@ public class MyFrontend extends JPanel implements MouseListener {
         }
         this.setFocusable(true);
         this.addMouseListener(this);
-
     }
 
-    private void setWinner(String winner){
+    private void setWinner(String winner, int score){
          JLabel info = (JLabel) this.frame.getInfoPanel().getComponent(1);
-         info.setText("WINNER:" + winner);
+         info.setText("WINNER: " + winner + " with " + score + " stones");
     }
 
     private void repaintBoard(){
@@ -58,19 +56,15 @@ public class MyFrontend extends JPanel implements MouseListener {
             System.out.println("TAM NIE");
         } else {
             this.rules.putStone(new int[]{row, col}, "PC", "PLAYER");
-            System.out.println("TREFA");
 
             this.rules.validateTiles("PLAYER", "PC");
             ArrayList<int[]> options =  this.rules.getAIOptions();
-            for (int opt = 0; opt < options.size(); opt++) {
-                System.out.println(options.get(opt)[0] + ", " + options.get(opt)[1]);
-            }
+
             if(options.size() > 0){
                 do{
                     int choice = (int) (Math.random() * options.size());
                     int y = options.get(choice)[0];
                     int x = options.get(choice)[1];
-                    System.out.println("AI chose coords {" + y + ", " + x + "}");
 
                     this.rules.putStone(new int[] {y, x}, "PLAYER", "PC");
 
@@ -83,7 +77,8 @@ public class MyFrontend extends JPanel implements MouseListener {
             this.revalidate();
             if (!this.rules.canPlayerMakeMove() && options.size() == 0){
                 String winner = this.rules.getWinner();
-                this.setWinner(winner);
+                int score = this.rules.countScore(winner);
+                this.setWinner(winner, score);
             }
         }
     }

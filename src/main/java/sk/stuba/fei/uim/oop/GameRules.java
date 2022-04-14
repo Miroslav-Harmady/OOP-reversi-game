@@ -13,7 +13,6 @@ public class GameRules {
         this.dataArr = new TileDataa[this.size][this.size];
         this.directions = new int[][]{{-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}};
 
-        //uvodna inicializacia dat tak aby som mal hned aj prve kamene
         for (int row = 0; row < this.size; row++) {
             for (int col = 0; col < this.size; col++) {
                 this.dataArr[row][col] = new TileDataa("EMPTY", Color.green);
@@ -28,6 +27,18 @@ public class GameRules {
        this.validateTiles("PC", "PLAYER");
     }
 
+    public int countScore(String owner){
+        int score = 0;
+        for (int row = 0; row < this.size; row++) {
+            for (int col = 0; col < this.size; col++) {
+                if (this.dataArr[row][col].getOwner().equals(owner)){
+                    score++;
+                }
+            }
+        }
+        return score;
+    }
+
     public String getWinner(){
         int playerPoints = 0;
         for (int row = 0; row < this.size; row++) {
@@ -40,10 +51,10 @@ public class GameRules {
             }
         }
         if (playerPoints > 0){
-            return "WINNER: PLAYER";
+            return "PLAYER";
         }
         else
-            return "WINNER: AI";
+            return "PC";
     }
 
     public ArrayList<int[]> getAIOptions(){
@@ -88,7 +99,6 @@ public class GameRules {
             stoneColor = Color.black;
         }
         this.dataArr[coords[0]][coords[1]] = new TileDataa(onMove, stoneColor);
-        //System.out.println("obsadzujem kamen na suradnici " + coords[0] + ", " + coords[1]);
         int[] searchCoords = new int[2];
         searchCoords[0] = coords[0];
         searchCoords[1] = coords[1];
@@ -97,7 +107,6 @@ public class GameRules {
 
         while (!this.dataArr[searchCoords[0]][searchCoords[1]].getOwner().equals(onMove)){
             this.dataArr[searchCoords[0]][searchCoords[1]] = new TileDataa(onMove, stoneColor);
-            System.out.println("obsadzujem kamen na suradnici " + searchCoords[0] + ", " + searchCoords[1]);
             searchCoords[0] += dir[0];
             searchCoords[1] += dir[1];
         }
