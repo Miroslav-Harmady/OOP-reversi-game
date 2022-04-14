@@ -1,8 +1,10 @@
 package sk.stuba.fei.uim.oop;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import sk.stuba.fei.uim.oop.board.MyFrontend;
+import sk.stuba.fei.uim.oop.logic.GameRules;
+import sk.stuba.fei.uim.oop.menu.GameMenu;
 
 import javax.swing.*;
 import java.awt.*;

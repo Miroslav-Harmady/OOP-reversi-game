@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop;
 
 import lombok.Data;
+import sk.stuba.fei.uim.oop.logic.GameRules;
 
 import javax.swing.*;
 import java.awt.*;

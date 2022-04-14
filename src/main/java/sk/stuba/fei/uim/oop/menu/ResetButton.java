@@ -1,4 +1,6 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.menu;
+
+import sk.stuba.fei.uim.oop.GameWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

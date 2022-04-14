@@ -1,4 +1,7 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.board;
+
+import sk.stuba.fei.uim.oop.logic.GameRules;
+import sk.stuba.fei.uim.oop.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;

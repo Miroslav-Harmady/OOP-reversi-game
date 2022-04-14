@@ -1,13 +1,12 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.menu;
 
 import lombok.Getter;
+import sk.stuba.fei.uim.oop.GameWindow;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GameMenu extends JPanel implements ChangeListener {
     @Getter

@@ -1,4 +1,5 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.logic;
+
 import java.awt.*;
 import java.util.ArrayList;
 
