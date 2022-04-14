@@ -18,19 +18,32 @@ public class GameRules {
             for (int col = 0; col < this.size; col++) {
                 this.dataArr[row][col] = new TileDataa("EMPTY", Color.green);
             }
-            this.dataArr[this.size / 2 - 1][this.size / 2 - 1] = new TileDataa("PLAYER", Color.white);
-            this.dataArr[this.size / 2 - 1][this.size / 2] = new TileDataa("PC", Color.black);
-            this.dataArr[this.size / 2][this.size / 2 - 1] = new TileDataa("PC", Color.black);
-            this.dataArr[this.size / 2][this.size / 2] = new TileDataa("PLAYER", Color.white);
         }
+        this.dataArr[this.size / 2 - 1][this.size / 2 - 1] = new TileDataa("PLAYER", Color.white);
+        this.dataArr[this.size / 2 - 1][this.size / 2] = new TileDataa("PC", Color.black);
+        this.dataArr[this.size / 2][this.size / 2 - 1] = new TileDataa("PC", Color.black);
+        this.dataArr[this.size / 2][this.size / 2] = new TileDataa("PLAYER", Color.white);
 
         //hned na uvod kontrolujem ktore policka moze hrac obsadit
+       this.validateTiles("PC", "PLAYER");
+    }
+
+    public String getWinner(){
+        int playerPoints = 0;
         for (int row = 0; row < this.size; row++) {
             for (int col = 0; col < this.size; col++) {
-                this.setIfTilePlayable(new int[]{row, col}, "PC", "PLAYER");
-
+                if (this.dataArr[row][col].getOwner().equals("PLAYER")){
+                    playerPoints++;
+                }
+                else
+                    playerPoints--;
             }
         }
+        if (playerPoints > 0){
+            return "WINNER: PLAYER";
+        }
+        else
+            return "WINNER: AI";
     }
 
     public ArrayList<int[]> getAIOptions(){
@@ -67,8 +80,7 @@ public class GameRules {
         return false;
     }
 
-    public void encircleEnemy(int[] coords, int[] dir, String onMove) {
-        // bud namiesto oponenta bude farba alebo si ju zatial nastavim priamo vo vnutri cez if
+    private void encircleEnemy(int[] coords, int[] dir, String onMove) {
         Color stoneColor;
         if (onMove.equals("PLAYER")) {
             stoneColor = Color.white;
@@ -76,8 +88,7 @@ public class GameRules {
             stoneColor = Color.black;
         }
         this.dataArr[coords[0]][coords[1]] = new TileDataa(onMove, stoneColor);
-        System.out.println("obsadzujem kamen na suradnici " + coords[0] + ", " + coords[1]);
-
+        //System.out.println("obsadzujem kamen na suradnici " + coords[0] + ", " + coords[1]);
         int[] searchCoords = new int[2];
         searchCoords[0] = coords[0];
         searchCoords[1] = coords[1];
@@ -92,7 +103,16 @@ public class GameRules {
         }
     }
 
-    public void setIfTilePlayable(int[] coords, String opponent, String onMove) {
+    public void validateTiles(String opponent, String onMove){
+        for (int row = 0; row < this.size; row++) {
+            for (int col = 0; col < this.size; col++) {
+                this.setIfTilePlayable(new int[]{row, col}, opponent, onMove);
+
+            }
+        }
+    }
+
+    private void setIfTilePlayable(int[] coords, String opponent, String onMove) {
         if(!this.dataArr[coords[0]][coords[1]].getOwner().equals("EMPTY")){
             return;
         }
@@ -120,7 +140,7 @@ public class GameRules {
         }
     }
 
-    public boolean playableInDirection(int[] coords, int[] dir, String opponent, String onMove) {
+    private boolean playableInDirection(int[] coords, int[] dir, String opponent, String onMove) {
         int counter = 0;
         int[] searchCoords = new int[2];
         searchCoords[0] = coords[0];
@@ -153,9 +173,5 @@ public class GameRules {
 
     public TileDataa[][] getDataArr() {
         return this.dataArr;
-    }
-
-    public int[][] getDirections() {
-        return directions;
     }
 }

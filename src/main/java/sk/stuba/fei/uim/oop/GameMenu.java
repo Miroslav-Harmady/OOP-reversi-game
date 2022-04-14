@@ -1,5 +1,7 @@
 package sk.stuba.fei.uim.oop;
 
+import lombok.Getter;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -8,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameMenu extends JPanel implements ChangeListener {
+    @Getter
     private ResetButton resetButton;
+    @Getter
     private JSlider resizeSlider;
     private JLabel sizeInfo;
 
@@ -30,6 +34,7 @@ public class GameMenu extends JPanel implements ChangeListener {
         this.setSlider();
 
         this.resizeSlider.addChangeListener(this);
+        this.resizeSlider.setFocusable(false);
         this.resetButton.addActionListener(this.resetButton);
 
     }
@@ -51,9 +56,5 @@ public class GameMenu extends JPanel implements ChangeListener {
         this.resizeSlider.setPaintLabels(true);
         this.resizeSlider.setPaintTrack(true);
         this.resizeSlider.setSnapToTicks(true);
-    }
-
-    public JLabel getSizeInfo() {
-        return sizeInfo;
     }
 }
