@@ -55,9 +55,7 @@ public class MyFrontend extends JPanel implements MouseListener {
         int col = this.getComponentAt(e.getX(), e.getY()).getX() / (this.getPreferredSize().width / this.rules.getBoardSize());
         int row = this.getComponentAt(e.getX(), e.getY()).getY() / (this.getPreferredSize().width / this.rules.getBoardSize());
 
-        if (!this.rules.getDataArr()[row][col].isPlayableByPlayer()) {
-            System.out.println("TAM NIE");
-        } else {
+        if (this.rules.getDataArr()[row][col].isPlayableByPlayer()) {
             this.rules.putStone(new int[]{row, col}, "PC", "PLAYER");
 
             this.rules.validateTiles("PLAYER", "PC");
@@ -79,8 +77,14 @@ public class MyFrontend extends JPanel implements MouseListener {
             this.repaintBoard();
             this.revalidate();
             if (!this.rules.canPlayerMakeMove() && options.size() == 0){
+                int score;
                 String winner = this.rules.getWinner();
-                int score = this.rules.countScore(winner);
+                if(winner.equals("DRAW")){
+                    score = this.rules.countScore("PLAYER");
+                }
+                else{
+                    score = this.rules.countScore(winner);
+                }
                 this.setWinner(winner, score);
             }
         }

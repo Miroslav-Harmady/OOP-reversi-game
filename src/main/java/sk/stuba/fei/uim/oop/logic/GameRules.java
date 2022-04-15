@@ -54,6 +54,9 @@ public class GameRules {
         if (playerPoints > 0){
             return "PLAYER";
         }
+        else if(playerPoints == 0){
+            return "DRAW";
+        }
         else
             return "PC";
     }
