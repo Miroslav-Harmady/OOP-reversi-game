@@ -15,12 +15,12 @@ public class Tile extends JPanel implements MouseListener {
 
     public Tile(GameRules rules, Color color, boolean highlighted){
         super();
-        this.rules = rules;
+        this.rules = rules; // okej toto asi esete zmazat a upravit aj inde v kode
         this.fill = color;
         this.setSize(480/rules.getBoardSize());
         if (highlighted){
             this.setBorder(BorderFactory.createLineBorder(Color.red,3));
-            //this.addMouseListener(this); ked pouzijem tento listener nebude mi fungovat lilstener v ploche
+            //this.addMouseListener(this); ked pouzijem tento listener nebude mi fungovat listener v ploche
         } else{
             this.setBorder(BorderFactory.createLineBorder(Color.black));
         }

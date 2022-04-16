@@ -47,7 +47,7 @@ public class GameRules {
                 if (this.dataArr[row][col].getOwner().equals("PLAYER")){
                     playerPoints++;
                 }
-                else
+                else if (this.dataArr[row][col].getOwner().equals("PC"))
                     playerPoints--;
             }
         }

@@ -49,7 +49,6 @@ public class MyFrontend extends JPanel implements MouseListener {
         this.revalidate();
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
         int col = this.getComponentAt(e.getX(), e.getY()).getX() / (this.getPreferredSize().width / this.rules.getBoardSize());
