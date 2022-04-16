@@ -17,7 +17,7 @@ public class Tile extends JPanel implements MouseListener {
         super();
         this.rules = rules; // okej toto asi esete zmazat a upravit aj inde v kode
         this.fill = color;
-        this.setSize(480/rules.getBoardSize());
+        this.setSize(480/this.rules.getBoardSize());
         if (highlighted){
             this.setBorder(BorderFactory.createLineBorder(Color.red,3));
             //this.addMouseListener(this); ked pouzijem tento listener nebude mi fungovat listener v ploche
