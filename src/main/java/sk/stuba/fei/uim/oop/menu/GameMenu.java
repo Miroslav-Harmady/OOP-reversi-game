@@ -14,6 +14,7 @@ public class GameMenu extends JPanel implements ChangeListener {
     @Getter
     private JSlider resizeSlider;
     private JLabel sizeInfo;
+    private GameWindow frame;
 
     public GameMenu(GameWindow frame){
         super();
@@ -24,6 +25,7 @@ public class GameMenu extends JPanel implements ChangeListener {
         this.resizeSlider = new JSlider(6, 12, 6);
         this.sizeInfo = new JLabel("6x6");
         this.resetButton = new ResetButton(frame);
+        this.frame = frame;
 
         this.setBackground(Color.lightGray);
         this.add(this.resizeSlider);
@@ -46,7 +48,10 @@ public class GameMenu extends JPanel implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e) {
+
         this.resetButton.setSize(((JSlider) e.getSource()).getValue());
+        //--------------------------
+        this.frame.gameRestart();
     }
 
     private void  setSlider(){
